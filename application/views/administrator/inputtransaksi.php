@@ -48,9 +48,9 @@
 					<td><input type="text" name="hrg" id="hrgbrg"  class="form-control"></td>
 				</tr>
 				<tr>
-					<td>Sisa Kartu Stock</td>
+					<td>Stock</td>
 					<td>:</td>
-					<td><input type="text" readonly="" name="stock" id="stock"  class="form-control"></td>
+					<td><input type="text"  name="stock" id="stock"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>QTY</td>
@@ -101,7 +101,7 @@
 					dangerMode : [true,"Ok"],
 					title : "QTY tidak sesuai"
 				})
-			}else if(document.getElementById("qtypesan").value > document.getElementById("stock").value ){
+			}else if($("#saldo").val() < document.getElementById("qtypesan").value   ){
 				swal({
 					icon : "error",
 					dangerMode : [true,"Ok"],
@@ -183,6 +183,8 @@
 			$("#daftarItembayar").load("<?= base_url("administrator/InputTransaksi/loadItemBayar") ?>")
 			
 		})
+
+		
 	})
 
 
@@ -262,19 +264,25 @@
 			var grndtotal = document.getElementById("grndtotal").value ;
 			var bayar = document.getElementById('uang_bayar').value ;
 			var kembali = bayar - grndtotal  ; 
-			if(bayar <  grndtotal  ){
+			
+			if(kembali < 0){
+				alert("uang kurang")
+			}else {
+				document.getElementById("uang_kembali").value = kembali ;
+				$("#save").show();
+			}
+
+			/*if(bayar >  grndtotal  ){
+			}else {
 				swal({
                 icon : "error",
                 title : "Perhatian",
                 dangerMode : [true,"Iya"],
-                text : "uang bayar tidak boleh kurang dari total pembelian"
+                text :"uang kurang"
               })
 				return false ;
-			}else {
-				document.getElementById("uang_kembali").value = kembali ;
-				$("#save").show();
 
-			}
+			}*/
 		})
 	})
 

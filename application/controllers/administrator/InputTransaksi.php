@@ -14,7 +14,7 @@ class InputTransaksi extends CI_Controller
 		$data['url'] = $this->uri->segment(2); 
 		$data['url2'] = $this->uri->segment(3);
 		$data['produk'] = $this->db->get("tbl_barang")->result() ; 
-		$this->template->load("template/template","administrator/InputTransaksi",$data);
+		$this->template->load("template/template","administrator/inputtransaksi",$data);
 	}
 
 
@@ -131,7 +131,7 @@ class InputTransaksi extends CI_Controller
 	 			'label'				=> "keluar",
 	 			'tanggal'			=> date('Y-m-d'),
 	 			'no_transaksi'		=> $item['invoice'],
-	 			'nilai'				=> $item['price'],
+	 			'nilai'				=> $item['price'] * $item['qty'],
 	 			'supplier'			=> $item['nama_user']
 			);
 

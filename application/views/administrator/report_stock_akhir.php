@@ -55,12 +55,12 @@
 		</thead>
 		<tbody id="show_data">
 			<tr>
+				<td>1</td>
 				<td></td>
+				<td><?= $this->session->userdata("kodebar") ?></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?= $barang_masuk->jumlah ?></td>
+				<td><?= $barang_keluar->jumlah ?></td>
 				<td><?= $saldo_akhir->jumlah ?></td>
 				<td><?= number_format($nilaiSaldo) ?></td>
 			</tr>

@@ -95,4 +95,12 @@
  		return $this->db->get("lajur_stock");
  	}
 
+ 	//hitung barang keluar masuk
+ 	public function inoutBarang($start,$end,$where,$label)
+ 	{
+ 		$this->db->select('(SELECT SUM(' .$label.' ) FROM lajur_stock where kode_barang =  ' . $where . ' AND tanggal  between   "' . $start . '" AND  "' .  $end .'") AS jumlah', FALSE);
+		$query = $this->db->get('lajur_stock');
+		return $query ;
+ 	}
+
  }

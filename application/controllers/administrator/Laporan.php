@@ -31,7 +31,7 @@
  		$data['saldo_akhir'] = $this->m_transaksi->hitung($start,$end,$where)->row() ;
  		$beli = $this->m_transaksi->nilaiSaldo($start,$end,$where,"masuk")->row();
  		$jual = $this->m_transaksi->nilaiSaldo($start,$end,$where,"keluar")->row();
- 		$data['nilaiSaldo'] = $beli->jumlah - $jual->jumlah;
+ 		$data['nilaiSaldo'] = $jual->jumlah - $beli->jumlah;
  		$this->load->view("administrator/report_stock",$data);
  	}
 
@@ -66,7 +66,7 @@
                     $r->barang_masuk,
                     $r->barang_keluar,
                     $total += $r->barang_masuk - $r->barang_keluar,
-                    $r->label == "masuk" ? number_format($r->nilai)   :  number_format($r->nilai * $r->barang_keluar)   ,
+                    number_format($r->nilai)     ,
                );
           }
 
@@ -101,10 +101,24 @@
  		$this->session->set_userdata("start",$start);
  		$this->session->set_userdata("end",$end);
  		$this->session->set_userdata("kodebar",$kodebar);
+
+    //hitung saldo akhir barang 
  		$data['saldo_akhir'] = $this->m_transaksi->hitung($start,$end,$kodebar)->row() ;
- 		$beli = $this->m_transaksi->nilaiSaldo($start,$end,$kodebar,"masuk")->row();
- 		$jual = $this->m_transaksi->nilaiSaldo($start,$end,$kodebar,"keluar")->row();
- 		$data['nilaiSaldo'] = $beli->jumlah - $jual->jumlah;
+
+    //hitung nilai pembelian barang
+ 		$data['beli'] = $this->m_transaksi->nilaiSaldo($start,$end,$kodebar,"masuk")->row();
+
+    //hitung nilai penjualan barang
+ 		$data['jual'] = $this->m_transaksi->nilaiSaldo($start,$end,$kodebar,"keluar")->row();
+
+    //hitung nilai saldo akhir antara penjualan dan pembelian
+ 		$data['nilaiSaldo'] = $data['beli']->jumlah - $data['jual']->jumlah;
+
+    //hituung barang masuk 
+    $data['barang_masuk'] = $this->m_transaksi->inoutBarang($start,$end,$kodebar,"barang_masuk")->row();
+
+    //hitung barang keluar
+    $data['barang_keluar'] = $this->m_transaksi->inoutBarang($start,$end,$kodebar,"barang_keluar")->row();
  		$this->load->view("administrator/report_stock_akhir",$data);
  	}
 
