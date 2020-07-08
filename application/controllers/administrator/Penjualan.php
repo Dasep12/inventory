@@ -36,7 +36,7 @@
                     $no++  ,
                     $r->no_transaksi,
                     $r->tanggal,
-                    number_format($r->pembayaran - $r->kembali),
+                    number_format($r->pembayaran - $r->kembali,2),
                     '<a href="javascript:;" data-id="'. $r->no_transaksi .'" data-toggle="modal" data-target="#lihat_transaksi" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-book"></i> </a>  </a></td>'
                );
           }

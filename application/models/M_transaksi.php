@@ -34,7 +34,7 @@
  		return $this->db->delete($table);
  	}
 
- 	//cari data berdasarkan id
+ 	//cari data berdasarkan inputan
  	public function cari($table ,$where)
  	{
  		return $this->db->get_where($table,$where);
@@ -102,6 +102,16 @@
  		$this->db->select('(SELECT SUM(' .$label.' ) FROM lajur_stock where kode_barang =  ' . $where . ' AND tanggal  between   "' . $start . '" AND  "' .  $end .'") AS jumlah', FALSE);
 		$query = $this->db->get('lajur_stock');
 		return $query ;
+ 	}
+
+ 	//join table untuk cetak report pdf 
+ 	public function cetakPDF($where)
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("invoice");
+ 		$this->db->where("id_transaksi",$where);
+ 		$this->db->join("transaksi","transaksi.no_transaksi = invoice.id_transaksi");
+ 		return $this->db->get();
  	}
 
  }

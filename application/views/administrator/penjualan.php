@@ -11,7 +11,7 @@
                     <th>No</th>
                     <th>Invoice</th>
                     <th>Tanggal Transaksi</th>
-                    <th>Total </th>
+                    <th>Total ( Rp ) </th>
                     <th>Lihat</th>
                 </tr>
             </thead>
@@ -70,7 +70,7 @@
 		})
 
 		$("#list_jual").dataTable({
-			"pageLength" : 5 ,
+			"pageLength" : 10 ,
 			"ajax" : {
 				url : "<?= base_url("administrator/Penjualan/getData") ?>",
 				type : "get" 

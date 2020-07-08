@@ -49,4 +49,4 @@
 		</tfoot>
 	</thead>
 </table>
-<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
+<a target="_blank" href="<?= base_url("administrator/Report/viewReport/". $list2->no_transaksi) ?>" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
