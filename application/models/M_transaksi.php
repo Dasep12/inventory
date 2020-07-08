@@ -50,7 +50,7 @@
  	//hitung jumlah stock barang
  	public function hitungStock($where)
  	{
- 		$this->db->select('(SELECT SUM(barang_masuk) - SUM(barang_keluar) FROM lajur_stock WHERE kode_barang = '.$where.' ) AS jumlah', FALSE);
+ 		$this->db->select('(SELECT  SUM(barang_masuk) - SUM(barang_keluar) FROM lajur_stock WHERE kode_barang = '.$where.' ) AS jumlah', FALSE);
 		$query = $this->db->get('lajur_stock');
  		return $query ;
  	}
@@ -83,8 +83,9 @@
  	//hitung saldo akhir untuk report
  	public function hitung($start,$end,$where)
  	{
- 		$this->db->select('(SELECT SUM(barang_masuk - barang_keluar ) FROM lajur_stock where kode_barang =  ' . $where . ' AND tanggal  between   "' . $start . '" AND  "' .  $end .'") AS jumlah', FALSE);
-		$query = $this->db->get('lajur_stock');
+ 		/*$this->db->select('(SELECT  SUM(barang_masuk - barang_keluar ) FROM lajur_stock where kode_barang =  ' . $where . ' AND tanggal  between   "' . $start . '" AND  "' .  $end .'") AS jumlah', FALSE);*/
+ 		$sql = "SELECT nama_barang , tanggal ,sum(barang_masuk - barang_keluar) as jumlah FROM lajur_stock  where kode_barang= $where and tanggal between '$start' AND '$end' order by tanggal desc ";
+		$query = $this->db->query($sql);
 		return $query ;
  	}
 

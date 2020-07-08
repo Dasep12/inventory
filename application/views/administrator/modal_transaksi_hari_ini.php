@@ -2,7 +2,7 @@
 	<tr>
 		<td >Nama Pelanggan</td>
 		<td >:</td>
-		<td width="35%" ><?= $list2->nama_pelanggan ?></td>
+		<td width="20%" ><?= $list2->nama_pelanggan ?></td>
 	</tr>
 	<tr>
 		<td>No Pesanan</td>
@@ -49,3 +49,4 @@
 		</tfoot>
 	</thead>
 </table>
+<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>

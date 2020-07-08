@@ -290,7 +290,7 @@
 					</li>
 
 
-					<li <?php if($url == "Laporan") { echo "class='active open'"; } ?>>
+					<li <?php if($url == "Laporan" || $url == "Penjualan") { echo "class='active open'"; } ?>>
 						<a href="<?= base_url() ?>#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-o"></i>
 
@@ -304,8 +304,8 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="<?= base_url() ?>">
+							<li <?php if($url == "Penjualan") { echo "class='active '"; } ?>>
+								<a href="<?= base_url('administrator/Penjualan') ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Penjualan
 								</a>
@@ -361,6 +361,8 @@
 									echo "Transaksi";
 								}else if($url == "Laporan"){
 									echo "Laporan";
+								}else if($url == "Penjualan"){
+									echo "Laporan";
 								} ?>
 								</a>
 							</li>
@@ -379,6 +381,8 @@
 									echo "Listing Lajur Stock";
 								}else if($url2 == "stockAkhir"){
 									echo "Report Stock Akhir";
+								}else if($url == "Penjualan"){
+									echo "Penjualan";
 								} ?>
 							</li>
 						</ul><!-- /.breadcrumb -->

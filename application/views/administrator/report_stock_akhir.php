@@ -56,9 +56,9 @@
 		<tbody id="show_data">
 			<tr>
 				<td>1</td>
-				<td></td>
+				<td><?= $saldo_akhir->nama_barang ?></td>
 				<td><?= $this->session->userdata("kodebar") ?></td>
-				<td></td>
+				<td><?= $saldo_akhir->tanggal ?></td>
 				<td><?= $barang_masuk->jumlah ?></td>
 				<td><?= $barang_keluar->jumlah ?></td>
 				<td><?= $saldo_akhir->jumlah ?></td>

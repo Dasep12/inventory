@@ -104,7 +104,6 @@
 
     //hitung saldo akhir barang 
  		$data['saldo_akhir'] = $this->m_transaksi->hitung($start,$end,$kodebar)->row() ;
-
     //hitung nilai pembelian barang
  		$data['beli'] = $this->m_transaksi->nilaiSaldo($start,$end,$kodebar,"masuk")->row();
 
