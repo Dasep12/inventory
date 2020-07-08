@@ -407,7 +407,7 @@
 					<div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder small">
-							Aplikasi Penjualan Sparepart &copy; Dasep Depiyawan</span>
+							Aplikasi Inventory &copy; Dasep Depiyawan</span>
 						</span>
 
 						&nbsp; &nbsp;

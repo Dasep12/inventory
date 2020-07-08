@@ -18,6 +18,7 @@ class Report extends CI_Controller
  		$where = array("no_transaksi" => $id);
  		$data['data'] = $this->m_transaksi->cetakPDF($id)->result();
  		$data['data2'] = $this->m_transaksi->cetakPDF($id)->row();
+ 		$data['total'] = $this->db->query("SELECT sum(harga_bayar) as jumlah from transaksi  where no_transaksi = '$id' ")->row();
  		$html = $this->load->view('administrator/Report',$data,true);
 
  		$dompdf->load_html($html);
