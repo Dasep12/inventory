@@ -74,8 +74,8 @@
 				<div class="navbar-header pull-left">
 					<a href="<?= base_url() ?>index.html" class="navbar-brand">
 						<small>
-							<i class="fa fa-leaf"></i>
-							Ace Admin
+							<i class="fa fa-book"></i>
+							App Inventory
 						</small>
 					</a>
 				</div>
@@ -254,7 +254,38 @@
 							</li>
 						</ul>
 					</li>
+					<li <?php if($url == "Unduh"){ echo "class='active open'"; } ?>>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-download"></i>
 
+							<span class="menu-text">
+								Unduh Laporan
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li <?php if($url2 == "penjualan"){ echo "class='active'"; } ?>>
+								<a href="<?= base_url("administrator/Unduh/penjualan") ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Penjualan
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li <?php if($url2 == "pembelian"){ echo "class='active'"; } ?>>
+								<a href="<?= base_url("administrator/Unduh/pembelian") ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pembelian
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
 					
 
 					<li <?php if($url == "InputTransaksi") { echo "class='active '"; } ?>>
@@ -290,7 +321,7 @@
 					</li>
 
 
-					<li <?php if($url == "Laporan" || $url == "Penjualan") { echo "class='active open'"; } ?>>
+					<li <?php if($url == "Laporan" || $url == "Penjualan" || $url == "Pembelian") { echo "class='active open'"; } ?>>
 						<a href="<?= base_url() ?>#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-o"></i>
 
@@ -308,6 +339,15 @@
 								<a href="<?= base_url('administrator/Penjualan') ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Penjualan
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li <?php if($url == "Pembelian") { echo "class='active '"; } ?>>
+								<a href="<?= base_url('administrator/Pembelian') ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pembelian
 								</a>
 
 								<b class="arrow"></b>
@@ -331,6 +371,12 @@
 							</li>
 						</ul>
 					</li>
+
+				
+
+
+
+
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -363,6 +409,10 @@
 									echo "Laporan";
 								}else if($url == "Penjualan"){
 									echo "Laporan";
+								}else if($url == "Pembelian"){
+									echo "Laporan";
+								}else if($url == "Unduh"){
+									echo "Unduh Laporan";
 								} ?>
 								</a>
 							</li>
@@ -383,6 +433,12 @@
 									echo "Report Stock Akhir";
 								}else if($url == "Penjualan"){
 									echo "Penjualan";
+								}else if($url == "Pembelian"){
+									echo "Pembelian";
+								}else if($url2 == "pembelian"){
+									echo "Unduh Pembelian";
+								}else if($url2 == "penjualan"){
+									echo "Unduh Penjualan";
 								} ?>
 							</li>
 						</ul><!-- /.breadcrumb -->

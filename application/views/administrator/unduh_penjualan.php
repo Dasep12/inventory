@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Report Stock Akhir</h1>
+	<h1>Unduh Data Penjualan</h1>
 </div><!-- /.page-header -->
 
 <div class="row">
@@ -19,7 +19,7 @@
      <hr>
 
 		<!-- input data transaksi-->
-		<form onsubmit="return validasi()" class="form-horizontal" action="<?= base_url("administrator/Laporan/reportStockakhir") ?>" method="post" id="" role="form">
+		<form onsubmit="return validasi()" class="form-horizontal" action="<?= base_url("administrator/Unduh/downloadPenjualan") ?>" method="post" id="" role="form">
 		<div class="col-lg-6">
 			<table class="table">
 				<tr>
@@ -56,7 +56,8 @@
 					<td></td>
 					<td></td>
 					<td>
-						<button type="submit" class="btn btn-sm btn-info">Preview Report</button>
+						<button type="submit" class="btn btn-sm btn-info">Download Report</button>
+						<button type="reset" class="btn btn-sm btn-info">Reset</button>
 					</td>
 					<td></td>
 				</tr>

@@ -44,7 +44,7 @@
 				<td></td>
 				<td></td>
 				<td>Grand Total</td>
-				<td><?=  "Rp. " .  number_format($grndtotal  ,2)?></td>
+				<td><?=  "Rp. " .  number_format($total->jumlah  ,2)?></td>
 			</tr>
 		</tfoot>
 	</thead>

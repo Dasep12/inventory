@@ -5,17 +5,17 @@
  /**
   * 
   */
- class Penjualan extends CI_Controller
+ class Pembelian extends CI_Controller
  {
  	public function index()
  	{
  		$data['url'] = $this->uri->segment(2);
  		$data['url2'] = $this->uri->segment(3);
- 		$this->template->load("template/template","administrator/penjualan",$data);
+ 		$this->template->load("template/template","administrator/pembelian",$data);
  	}
 
 
- 	public function getData()
+ 	public function sendData()
  	{
  		// Datatables Variables
           $draw = intval($this->input->get("draw"));
@@ -23,7 +23,7 @@
           $length = intval($this->input->get("length"));
 
 
-         $books = $this->m_transaksi->listingPenjualan("invoice","tanggal");
+         $books = $this->m_transaksi->listingPembelian("lajur_stock","tanggal");
 
           $data = array();
           $no = 1 ;
@@ -35,8 +35,8 @@
                     $no++  ,
                     $r->no_transaksi,
                     $r->tanggal,
-                    number_format($r->pembayaran - $r->kembali,2),
-                    '<a href="javascript:;" data-id="'. $r->no_transaksi .'" data-toggle="modal" data-target="#lihat_transaksi" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-book"></i> </a>  </a></td>'
+                    $r->supplier,
+                    '<a href="javascript:;" data-id="'. $r->no_transaksi .'" data-toggle="modal" data-target="#lihat_pembelian" class="btn btn-xs btn-info"><i class="fa fa-book"></i> </a>',
                );
           }
 
@@ -49,4 +49,15 @@
           echo json_encode($output);
           exit();
  	}
+
+ 	public function listPembelian()
+ 	{
+ 		$id = $this->input->get("id");
+ 		$data['id'] = $this->input->get("id");
+		$where = array("no_transaksi" => $id);
+ 		$data['listbeli'] = $this->m_transaksi->cari("lajur_stock" ,$where)->result();
+ 		$data['listbeli2'] = $this->m_transaksi->cari("lajur_stock" ,$where)->row();
+ 		$this->load->view("administrator/modal_pembelian",$data);
+ 	}
+
  }

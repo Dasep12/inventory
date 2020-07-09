@@ -69,6 +69,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#formCariBarang").on("submit",function(e){
+			var saldo = document.getElementById("stock").value ;
 			e.preventDefault();
 
 			if(document.getElementById("namapelanggan").value == ""){
@@ -95,17 +96,17 @@
 					dangerMode : [true,"Ok"],
 					title : "QTY masih kosong"
 				})
+			}else if(document.getElementById("qtypesan").value   >  saldo  ){
+				swal({
+					icon : "error",
+					dangerMode : [true,"Ok"],
+					title : "QTY saldo tidak mencukupi pesanan"
+				})
 			}else if(document.getElementById("qtypesan").value < 0 ){
 				swal({
 					icon : "error",
 					dangerMode : [true,"Ok"],
 					title : "QTY tidak sesuai"
-				})
-			}else if($("#saldo").val() < document.getElementById("qtypesan").value   ){
-				swal({
-					icon : "error",
-					dangerMode : [true,"Ok"],
-					title : "QTY saldo tidak mencukupi pesanan"
 				})
 			}else {
 				$.ajax({
@@ -272,17 +273,6 @@
 				$("#save").show();
 			}
 
-			/*if(bayar >  grndtotal  ){
-			}else {
-				swal({
-                icon : "error",
-                title : "Perhatian",
-                dangerMode : [true,"Iya"],
-                text :"uang kurang"
-              })
-				return false ;
-
-			}*/
 		})
 	})
 
@@ -337,17 +327,19 @@
                                     <th>Nama Barang</th>
                                     <th>Kode Barang</th>
                                     <th>Harga Satuan</th>
+                                    <th>Pilih</th>
                                 </tr>
                             </thead>
                             <tbody>
                               <?php $no = 1 ; foreach($produk as $item) :  
                               $stock = $this->m_transaksi->hitungStock($item->kode_barang)->row();
                               ?>
-                              	<tr class="pilih" data-kdbar="<?= $item->kode_barang ?>" data-nambar="<?= $item->nama_barang ?>" data-hrg="<?= $item->harga_satuan ?>" data-stock="<?= $stock->jumlah ?>">
+                              	<tr  >
                               		<td><?= $no++ ?></td>
                               		<td><?= $item->nama_barang ?></td>
                               		<td><?= $item->kode_barang ?></td>
                               		<td><?= $item->harga_satuan ?></td>
+                              		<td class="pilih" data-kdbar="<?= $item->kode_barang ?>" data-nambar="<?= $item->nama_barang ?>" data-hrg="<?= $item->harga_satuan ?>" data-stock="<?= $stock->jumlah ?>"><button type="button" class="btn btn-xs btn-primary small">Select</button></td>
                               	</tr>
 	                          <?php endforeach ; ?>
                             </tbody>

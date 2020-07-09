@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Report Stock Akhir</h1>
+	<h1>Unduh Pembelian</h1>
 </div><!-- /.page-header -->
 
 <div class="row">

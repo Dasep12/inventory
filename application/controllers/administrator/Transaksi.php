@@ -30,6 +30,7 @@
  	public function listPesanan()
  	{
  		$id = $this->input->get("id");
+ 		$data['total'] = $this->db->query("SELECT sum(harga_bayar) as jumlah from transaksi  where no_transaksi = '$id' ")->row();
  		$data['list'] = $this->m_transaksi->join($id)->result(); 
  		$data['list2'] = $this->m_transaksi->join($id)->row(); 
  		$this->load->view("administrator/modal_transaksi_hari_ini",$data);

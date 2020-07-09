@@ -21,6 +21,7 @@
  	//report lajur stock barang berdasarkan history
  	public function report()
  	{
+
  		$start = $this->input->post("start");
  		$end = $this->input->post("end");
  		$kodebar = $this->input->post("kode_barang");

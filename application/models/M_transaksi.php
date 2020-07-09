@@ -11,6 +11,23 @@
  	public function getData($table)
  	{
  		return $this->db->get($table);
+
+ 	}
+
+ 	//tampilkan lis all penjualan
+ 	 public function listingPenjualan($table,$id)
+ 	{
+ 		$this->db->order_by($id,"DESC");
+ 		return $this->db->get($table);
+ 	}
+
+
+ 	//tampilkan list all pembelian barang
+ 	 public function listingPembelian($table,$id)
+ 	{
+ 		$this->db->order_by($id,"DESC");
+ 		return $this->db->get_where($table,array("label" => "masuk"));
+
  	}
 
 
@@ -112,6 +129,17 @@
  		$this->db->where("id_transaksi",$where);
  		$this->db->join("transaksi","transaksi.no_transaksi = invoice.id_transaksi");
  		return $this->db->get();
+ 	}
+
+
+ 	//menampilkan data laporan stock berdasarkan tanggal 
+ 	public function unduhReport($start , $end ,$kodebar,$table)
+ 	{
+ 		$this->db->where('tanggal >=',$start);
+		$this->db->where('tanggal <=',$end);
+		$this->db->where("label","keluar");
+		$this->db->where("kode_barang",$kodebar);
+		return $this->db->get($table);
  	}
 
  }
