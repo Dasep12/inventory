@@ -113,6 +113,13 @@
  		return $this->db->get("lajur_stock");
  	}
 
+ 	//hitung total rupiah saldo akhir
+ 	public function nilaiSaldo2($start,$end,$label)
+ 	{
+ 		$this->db->select('(SELECT SUM(nilai) FROM lajur_stock where label = "'.$label.'" AND tanggal between "'.$start.'" AND "'.$end.'" )AS jumlah',FALSE);
+ 		return $this->db->get("lajur_stock");
+ 	}
+
  	//hitung barang keluar masuk
  	public function inoutBarang($start,$end,$where,$label)
  	{
@@ -133,13 +140,25 @@
 
 
  	//menampilkan data laporan stock berdasarkan tanggal 
- 	public function unduhReport($start , $end ,$kodebar,$table)
+ 	public function unduhReport($start , $end ,$kodebar,$table,$label)
  	{
  		$this->db->where('tanggal >=',$start);
 		$this->db->where('tanggal <=',$end);
-		$this->db->where("label","keluar");
+		$this->db->where("label",$label);
 		$this->db->where("kode_barang",$kodebar);
 		return $this->db->get($table);
+ 	}
+
+
+ 	//hitung grafik penjualan barang
+ 	public function countBarangJual($start,$end)
+ 	{
+ 		$this->db->select_sum('barang_keluar');
+ 		$this->db->where("label","keluar");
+ 		$this->db->where('tanggal >=',$start);
+		$this->db->where('tanggal <=',$end);
+		$query = $this->db->get('lajur_stock');
+ 		return $query ;
  	}
 
  }

@@ -19,8 +19,8 @@
   			<div class="card">
   	
   	<div class="form-group">
-  		<center><h4>Data Penjualan Kode Barang <?= $kodebar   ?></h4></center>
-  	<table >
+  		<center><h4>Data <?php if($label == "masuk"){ echo "Pembelian" ; }else { echo "Penjualan"; }  ?> Kode Barang <?= $kodebar   ?></h4></center>
+  	<table>
 			  <tr>
 			  	<td width="40%">User</td>
 			  	<td >:</td>
@@ -45,8 +45,20 @@
 			<th>Nama Barang</th>
 			<th>Kode Barang</th>
 			<th>Tanggal</th>
-			<th>QTY OUT</th>
-			<th>Customer</th>
+			<th><?php 
+				if($label == "masuk"){ 
+					echo "QTY IN" ; }
+				else { 
+					echo "QTY OUT";
+				}  ?>
+			</th>
+			<th><?php 
+				if($label == "masuk"){ 
+					echo "Supplier" ; }
+				else { 
+					echo "Costumer";
+				} ?>
+			</th>
 			<th>No Transaksi</th>
 			<th>Nilai</th>
 		</tr>
@@ -57,7 +69,7 @@
 					<td><?= $item->nama_barang ?></td>
 					<td><?= $item->kode_barang ?></td>
 					<td><?= $item->tanggal ?></td>
-					<td><?= $item->barang_keluar ?></td>
+					<td><?php if($label == "masuk") { echo $item->barang_masuk; }else { echo $item->barang_keluar; }  ?></td>
 					<td><?= $item->supplier ?></td>
 					<td><?= $item->no_transaksi ?></td>
 					<td><?= number_format($item->nilai,2) ?></td>

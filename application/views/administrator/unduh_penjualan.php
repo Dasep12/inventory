@@ -8,15 +8,31 @@
      	<img style="display: none;" id="loading" height="90px" width ="100px" src="<?= base_url("assets/images/loading.gif") ?>">
      </div>
 
+
+     <div class="form-group col-lg-2">
+     	<label class="label label-primary">Select Type Report</label>
+     	 <div class="btn-group">
+		<button data-toggle="dropdown" class="btn btn-primary btn-white dropdown-toggle col-lg-12" style="width: 120%">
+			Jenis Penarikan
+			<i class="ace-icon fa fa-angle-down icon-on-right"></i>
+		</button>
+
+		<ul class="dropdown-menu" id="item">
+			<li value="1"><a href="#">Per Kode Barang</a></li>
+			<li value="2" ><a href="#">All Barang</a></li>
+		</ul>
+	</div><!-- /.btn-group -->
+     </div>
+
+<div id="form-report" >
      <div class="form-group">
-     	<button type="button"  data-toggle="modal" data-target="#myModal" href="#">
+     	<button type="button" disabled="" id="btn-d"  data-toggle="modal" data-target="#myModal" href="#">
      		Cari Barang <i class="fa fa-search-plus"></i>
      	</button>
      </div>
-		<div id="info">
-			
-		</div>
+
      <hr>
+
 
 		<!-- input data transaksi-->
 		<form onsubmit="return validasi()" class="form-horizontal" action="<?= base_url("administrator/Unduh/downloadPenjualan") ?>" method="post" id="" role="form">
@@ -26,6 +42,7 @@
 					<td>Nama Barang</td>
 					<td>:</td>
 					<td  colspan="2">
+						<input type="hidden" id="id" name="id" value="">
 						<input type="text" readonly="" name="nama_barang"  id="nama_barang" class="form-control">
 					</td>
 					<td></td>
@@ -62,11 +79,16 @@
 					<td></td>
 				</tr>
 			</table>
+				<div id="info">
+			
+		</div>
 		</div>
 		</form>
+
 	</div>
 </div>
 
+</div>
 
 <!-- Modal data barang -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -114,6 +136,27 @@
 
 		$("#myModal").modal("hide");
 	})
+
+
+	//load form unduh report berdasarkan tanggal atau load semua item
+     	$(document).ready(function(){
+     		$("li").on("click",function(e){
+     			var id = $(this).val();
+     			if(id == 1){
+     				$("#btn-d").attr("disabled",false);
+     				$("#btn-d").attr("class","btn btn-danger btn-sm");
+     				$("#nama_barang").attr("value","");
+     				$("#kode_barang").attr("value","");
+     				$("#id").attr("value","1");
+     			}else {
+     				$("#btn-d").attr("class","");
+     				document.getElementById("nama_barang").value = "All Item" ;
+     				document.getElementById("kode_barang").value = "All Item" ;
+     				$("#id").attr("value","2");
+     				$("#btn-d").attr("disabled",true);
+     			}
+     		})
+     	})
 
 		function validasi(){
 		if(document.getElementById("kode_barang").value == ""){

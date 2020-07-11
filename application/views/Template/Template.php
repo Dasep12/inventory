@@ -48,6 +48,11 @@
 		<script src="<?= base_url() ?>assets/js/respond.min.js"></script>
 		<![endif]-->
 
+		<!-- grafik charts js -->
+		<script src="<?= base_url("assets/grafik/") ?>highcharts.js"></script>
+		<script src="<?= base_url("assets/grafik/") ?>exporting.js"></script>
+		<script src="<?= base_url("assets/grafik/") ?>export-data.js"></script>
+		<script src="<?= base_url("assets/grafik/") ?>accessibility.js"></script>
 
 		<!-- datepicker -->
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-datepicker3.min.css" />
@@ -174,6 +179,15 @@
 						<b class="arrow"></b>
 					</li>
 
+					<li <?php if($url == "Supplier") { echo "class='active'"; } ?>>
+						<a href="<?= base_url('administrator/Supplier') ?>">
+							<i class="menu-icon fa fa-users"></i>
+							Supplier
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+<!-- 
 					<li <?php if($url == "Supplier") { echo "class='active open'"; } ?>>
 						<a href="<?= base_url() ?>#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-users"></i>
@@ -187,17 +201,9 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="<?= base_url() ?>typography.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Pelanggan
-								</a>
-
-								<b class="arrow"></b>
-							</li>
 							<li <?php if($url == "Supplier") { echo "class='active'"; } ?>>
 								<a href="<?= base_url('administrator/Supplier') ?>">
-									<i class="menu-icon fa fa-caret-right"></i>
+									<i class="menu-icon fa fa-users"></i>
 									Supplier
 								</a>
 
@@ -205,7 +211,7 @@
 							</li>
 
 						</li>
-					</ul>
+					</ul> -->
 
 					<li 
 						<?php if($url == "Barangbaru") { 
@@ -271,7 +277,7 @@
 							<li <?php if($url2 == "penjualan"){ echo "class='active'"; } ?>>
 								<a href="<?= base_url("administrator/Unduh/penjualan") ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Penjualan
+									Rekap Penjualan
 								</a>
 
 								<b class="arrow"></b>
@@ -279,7 +285,7 @@
 							<li <?php if($url2 == "pembelian"){ echo "class='active'"; } ?>>
 								<a href="<?= base_url("administrator/Unduh/pembelian") ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Pembelian
+									Rekap Pembelian
 								</a>
 
 								<b class="arrow"></b>
