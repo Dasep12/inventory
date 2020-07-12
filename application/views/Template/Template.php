@@ -179,6 +179,15 @@
 						<b class="arrow"></b>
 					</li>
 
+					<li <?php if($url == "User") { echo "class='active'"; } ?>>
+						<a href="<?= base_url('administrator/User') ?>">
+							<i class="menu-icon fa fa-user"></i>
+							<span class="menu-text"> User </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
 					<li <?php if($url == "Supplier") { echo "class='active'"; } ?>>
 						<a href="<?= base_url('administrator/Supplier') ?>">
 							<i class="menu-icon fa fa-users"></i>
@@ -419,6 +428,8 @@
 									echo "Laporan";
 								}else if($url == "Unduh"){
 									echo "Unduh Laporan";
+								}else if($url == "User"){
+									echo "User";
 								} ?>
 								</a>
 							</li>

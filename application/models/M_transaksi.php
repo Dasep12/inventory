@@ -161,4 +161,23 @@
  		return $query ;
  	}
 
+ 	//join user dan akun
+ 	public function joinUser()
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("user");
+ 		$this->db->join("akun",'user.nik = akun.id_nik');
+ 		return $this->db->get();
+ 	}
+
+ 	//join user dan akun
+ 	public function joinUser2($where)
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("user");
+ 		$this->db->where("nik",$where);
+ 		$this->db->join("akun",'user.nik = akun.id_nik');
+ 		return $this->db->get();
+ 	}
+
  }
