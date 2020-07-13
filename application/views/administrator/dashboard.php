@@ -1,12 +1,12 @@
 <div class="page-header">
-	<h1>Selamat Datang </h1>
+	<h1>Selamat Datang <?= $this->session->userdata("nama") ?></h1>
 </div><!-- /.page-header -->
 
 <div class="row">
 		<figure class="highcharts-figure">
             <div id="container"></div>
         </figure>	
-	</div>
+
 </div>
 
 <script type="text/javascript">
@@ -73,4 +73,3 @@
     }]
 });
 </script>
-

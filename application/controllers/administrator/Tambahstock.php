@@ -7,6 +7,16 @@
   */
  class Tambahstock extends CI_Controller
  {
+
+ 	public function __construct()
+ 	{
+ 		parent::__construct();
+
+ 			if(empty($this->session->userdata("role_id"))){
+ 				redirect("Login");
+ 			}
+ 	}
+
  	public function index()
  	{
  		$data['url']  = $this->uri->segment(2);
@@ -30,7 +40,9 @@
  			'supplier'			=> $this->input->post("nama_supplier"),
  			'kode_supplier'		=> $this->input->post("kode_supplier"),
  			'tanggal'			=> date('Y-m-d'),
- 			'no_transaksi'		=> "INV-" . date("his")
+ 			'no_transaksi'		=> "INV-" . date("his"),
+ 			'user'				=> $this->session->userdata("nama"),
+			'nik'				=> $this->session->userdata("nik"),
  		);
 
  		$input = $this->m_transaksi->input("lajur_stock",$data);

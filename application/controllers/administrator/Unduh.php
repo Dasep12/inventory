@@ -6,6 +6,15 @@
  */
 class Unduh extends CI_Controller
 {
+	public function __construct()
+ 	{
+ 		parent::__construct();
+
+ 			if(empty($this->session->userdata("role_id"))){
+ 				redirect("Login");
+ 			}
+ 	}
+ 	
 	//menu download report penjualan
 	public function penjualan()
 	{

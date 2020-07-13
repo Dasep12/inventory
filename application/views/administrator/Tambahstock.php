@@ -105,23 +105,26 @@
                                     <th>Nama Barang</th>
                                     <th>Kode Barang</th>
                                     <th>Harga Satuan</th>
+                                    <td>Pilih</td>
                                 </tr>
                             </thead>
                             <tbody>
                               <?php $no = 1 ; foreach($produk as $item) : ?>
-                              	<tr class="pilih"
+                              	<tr>
+                              		<td><?= $no++ ?></td>
+                              		<td><?= $item->nama_barang ?></td>
+                              		<td><?= $item->kode_barang ?></td>
+                              		<td><?= $item->harga_satuan ?></td>
+                              		<td  class="pilih"
                               		data-nambar="<?= $item->nama_barang ?>"
                               		data-kdbar="<?= $item->kode_barang ?>"
                               		data-hrg="<?= $item->harga_satuan ?>"
                               		data-desc="<?= $item->deskripsi ?>"
                               		data-nama_supp="<?= $item->nama_supplier ?>"
                               		data-kode_supp="<?= $item->kode_supplier ?>"
-                              		data-satuan="<?= $item->satuan ?>"
-                              	>
-                              		<td><?= $no++ ?></td>
-                              		<td><?= $item->nama_barang ?></td>
-                              		<td><?= $item->kode_barang ?></td>
-                              		<td><?= $item->harga_satuan ?></td>
+                              		data-satuan="<?= $item->satuan ?>" >
+                              			<button type="button" class="btn btn-xs btn-info">Pilih</button>
+                              		</td>
                               	</tr>
 	                          <?php endforeach ; ?>
                             </tbody>

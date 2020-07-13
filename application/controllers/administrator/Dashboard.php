@@ -5,6 +5,16 @@
   */
  class Dashboard extends CI_Controller
  {
+ 	public function __construct()
+ 	{
+ 		parent::__construct();
+
+ 			if(empty($this->session->userdata("role_id"))){
+ 				redirect("Login");
+ 			}
+ 	}
+
+ 	
  	public function index()
  	{
  		date_default_timezone_set('Asia/Jakarta');

@@ -180,4 +180,17 @@
  		return $this->db->get();
  	}
 
+ 	//join user dan akun
+ 	public function cekLogin($nik,$pass)
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("akun");
+ 		$this->db->where("id_nik",$nik);
+ 		$this->db->where("pass",$pass);
+ 		$this->db->join("user",'user.nik = akun.id_nik');
+ 		return $this->db->get();
+ 	}
+
+
+
  }

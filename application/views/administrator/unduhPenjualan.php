@@ -24,7 +24,7 @@
 			  <tr>
 			  	<td width="40%">User</td>
 			  	<td >:</td>
-			  	<td width="50%">Dasep Depiyawan</td>
+			  	<td width="50%"><?= $this->session->userdata("nama") ?></td>
 			  </tr>
 		  	<tr>
 		  		<td>Tanggal </td>
@@ -35,7 +35,7 @@
 		  	<tr>
 		  		<td>Tanggal Penarikan </td>
 		  		<td>:</td>
-		  		<td><?=  date('Y-m-d ' . ' h:i:s') ?></td>
+		  		<td><?=  date('d-m-Y ' . ' h:i:s') ?></td>
 		  	</tr>
   	</table>
   	<hr>

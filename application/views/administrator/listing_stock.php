@@ -83,17 +83,21 @@
                                     <th>Nama Barang</th>
                                     <th>Kode Barang</th>
                                     <th>Harga Satuan</th>
+                                    <th>Pilih</th>
                                 </tr>
                             </thead>
                             <tbody>
                               <?php $no = 1 ; foreach($produk as $item) :  
                               $stock = $this->m_transaksi->hitungStock($item->kode_barang)->row();
                               ?>
-                              	<tr class="pilih" data-kdbar="<?= $item->kode_barang ?>" data-nambar="<?= $item->nama_barang ?>">
+                              	<tr >
                               		<td><?= $no++ ?></td>
                               		<td><?= $item->nama_barang ?></td>
                               		<td><?= $item->kode_barang ?></td>
                               		<td><?= $item->harga_satuan ?></td>
+                              		<td class="pilih" data-kdbar="<?= $item->kode_barang ?>" data-nambar="<?= $item->nama_barang ?>">
+                              			<button type="button" class="btn-xs btn-info btn">Pilih</button>
+                              		</td>
                               	</tr>
 	                          <?php endforeach ; ?>
                             </tbody>

@@ -7,6 +7,14 @@
  */
 class InputTransaksi extends CI_Controller
 {
+	public function __construct()
+ 	{
+ 		parent::__construct();
+
+ 			if(empty($this->session->userdata("role_id"))){
+ 				redirect("Login");
+ 			}
+ 	}
 	
 	public function index()
 	{
@@ -111,7 +119,9 @@ class InputTransaksi extends CI_Controller
 					'kode_barang'	=> $item['id'],
 					'harga_satuan'	=> $item['price'],
 					'nama_barang'	=> $item['name'],
-					'harga_bayar'	=> $item['price']  * $item['qty']
+					'harga_bayar'	=> $item['price']  * $item['qty'],
+					'user'			=> $this->session->userdata("nama"),
+					'nik'			=> $this->session->userdata("nik"),
 			);
 
 			$data2 = array(
@@ -119,7 +129,8 @@ class InputTransaksi extends CI_Controller
 				'tanggal'		=> date('Y-m-d'),
 				'pembayaran'	=> $bayar,
 				'kembali'		=> $kembali,
-				'id_transaksi'	=>$item['invoice']
+				'id_transaksi'	=>$item['invoice'],
+
 			);
 
 			//data input ke tabel lajur_stock
@@ -132,7 +143,9 @@ class InputTransaksi extends CI_Controller
 	 			'tanggal'			=> date('Y-m-d'),
 	 			'no_transaksi'		=> $item['invoice'],
 	 			'nilai'				=> $item['price'] * $item['qty'],
-	 			'supplier'			=> $item['nama_user']
+	 			'supplier'			=> $item['nama_user'],
+	 			'user'			=> $this->session->userdata("nama"),
+				'nik'			=> $this->session->userdata("nik"),
 			);
 
 			$this->m_transaksi->input("transaksi",$data);

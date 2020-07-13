@@ -6,6 +6,15 @@
  */
 class User extends CI_Controller
 {
+	public function __construct()
+ 	{
+ 		parent::__construct();
+
+ 			if(empty($this->session->userdata("role_id"))){
+ 				redirect("Login");
+ 			}
+ 	}
+
 	public function index()
 	{
 		$data['url'] = $this->uri->segment(2) ;

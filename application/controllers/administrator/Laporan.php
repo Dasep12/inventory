@@ -7,8 +7,21 @@
   */
  class Laporan extends CI_Controller
  {
+  
+  public function __construct()
+  {
+    parent::__construct();
+
+      if(empty($this->session->userdata("role_id"))){
+        redirect("Login");
+      }
+  }
+
+
  	public function stock()
  	{
+
+  
  		$data['url']  = $this->uri->segment(2);
  		$data['url2'] = $this->uri->segment(3);
  		$data['produk'] = $this->m_transaksi->getData("tbl_barang")->result() ; 

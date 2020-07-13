@@ -90,34 +90,32 @@
 
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="<?= base_url() ?>#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="<?= base_url() ?>assets/images/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="<?= base_url() ?>assets/images/avatars/profile-pic.jpg"  />
 								<span class="user-info">
 									<small>Welcome,</small>
-									Jason
+									<?= $this->session->userdata("nama") ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<?php if($this->session->userdata('role_id') == 1) { ?>
+
 								<li>
 									<a href="<?= base_url() ?>#">
 										<i class="ace-icon fa fa-cog"></i>
 										Settings
 									</a>
 								</li>
-
-								<li>
-									<a href="<?= base_url() ?>profile.html">
-										<i class="ace-icon fa fa-user"></i>
-										Profile
-									</a>
-								</li>
-
+								<?php }else {
+									echo "";
+								}?>
+								
 								<li class="divider"></li>
 
 								<li>
-									<a href="<?= base_url() ?>#">
+									<a href="<?= base_url("Logout") ?>">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -170,10 +168,20 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li <?php if($url == "Dashboard") { echo "class='active'"; } ?>>
+				<?php if ($this->session->userdata('role_id') == 1) { ?>
+				<li <?php if($url == "Dashboard") { echo "class='active'"; } ?>>
 						<a href="<?= base_url('administrator/Dashboard') ?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li <?php if($url == "InputTransaksi") { echo "class='active '"; } ?>>
+						<a href="<?= base_url('administrator/InputTransaksi') ?>">
+							<i class="menu-icon fa fa-dollar"></i>
+							<span class="menu-text">Input Transaksi </span>
 						</a>
 
 						<b class="arrow"></b>
@@ -196,31 +204,6 @@
 
 						<b class="arrow"></b>
 					</li>
-<!-- 
-					<li <?php if($url == "Supplier") { echo "class='active open'"; } ?>>
-						<a href="<?= base_url() ?>#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-users"></i>
-							<span class="menu-text">
-								Data user
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li <?php if($url == "Supplier") { echo "class='active'"; } ?>>
-								<a href="<?= base_url('administrator/Supplier') ?>">
-									<i class="menu-icon fa fa-users"></i>
-									Supplier
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-						</li>
-					</ul> -->
 
 					<li 
 						<?php if($url == "Barangbaru") { 
@@ -301,31 +284,7 @@
 							</li>
 						</ul>
 					</li>
-					
 
-					<li <?php if($url == "InputTransaksi") { echo "class='active '"; } ?>>
-						<a href="<?= base_url('administrator/InputTransaksi') ?>">
-							<i class="menu-icon fa fa-dollar"></i>
-							<span class="menu-text">Input Transaksi </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-<!-- 
-					<li class="">
-						<a href="<?= base_url() ?>calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
-
-							<span class="menu-text">
-								Pencarian Barang
-								<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-								</span>
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
- -->
 					<li <?php if($url2 == "Hariini") { echo "class='active '"; } ?>>
 						<a href="<?= base_url("administrator/Transaksi/Hariini") ?>">
 							<i class="menu-icon fa fa-money"></i>
@@ -386,6 +345,36 @@
 							</li>
 						</ul>
 					</li>
+				<?php }else { ?>
+					<li <?php if($url == "Dashboard") { echo "class='active'"; } ?>>
+						<a href="<?= base_url('administrator/Dashboard') ?>">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> Dashboard </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li <?php if($url == "InputTransaksi") { echo "class='active '"; } ?>>
+						<a href="<?= base_url('administrator/InputTransaksi') ?>">
+							<i class="menu-icon fa fa-dollar"></i>
+							<span class="menu-text">Input Transaksi </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li <?php if($url2 == "Hariini") { echo "class='active '"; } ?>>
+						<a href="<?= base_url("administrator/Transaksi/Hariini") ?>">
+							<i class="menu-icon fa fa-money"></i>
+							<span class="menu-text">Transaksi Hari ini </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+				<?php } ?>
+					
 
 				
 
