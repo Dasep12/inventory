@@ -1,4 +1,4 @@
-
+<?php $user = $this->m_transaksi->joinUser2($this->session->userdata('nik'))->row(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -72,13 +72,13 @@
 		background-size: 12%;
 	}
 
+
 </style>
 	</head>
 
 	<body class="no-skin">
 
-
-	<div id="reloading">Loading . . . </div>
+	<div class="" id="reloading">Loading . . . </div>
 		<div id="navbar" class="navbar navbar-default          ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -108,7 +108,7 @@
 								<img class="nav-user-photo" src="<?= base_url() ?>assets/images/avatars/profile-pic.jpg"  />
 								<span class="user-info">
 									<small>Welcome,</small>
-									<?= $this->session->userdata("nama") ?>
+									<?= $user->nama ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -118,7 +118,7 @@
 								<?php if($this->session->userdata('role_id') == 1) { ?>
 
 								<li>
-									<a href="<?= base_url() ?>#">
+									<a href="<?= base_url("administrator/Setting") ?>">
 										<i class="ace-icon fa fa-cog"></i>
 										Settings
 									</a>
