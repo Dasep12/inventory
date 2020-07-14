@@ -60,10 +60,25 @@
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css" />
+<style>
+	#reloading {
+		width: 100%;
+		height: 100%;
+		position: fixed; 
+		text-indent: 100%;
+		background: #e0e0e0 url('<?= base_url("assets/images/loading.gif") ?>') no-repeat center ;
+		z-index: 4;
+		opacity: 0.7 ;
+		background-size: 12%;
+	}
 
+</style>
 	</head>
 
 	<body class="no-skin">
+
+
+	<div id="reloading">Loading . . . </div>
 		<div id="navbar" class="navbar navbar-default          ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -542,6 +557,11 @@
 
 
 		<script type="text/javascript">
+
+			$(document).ready(function(){
+				$("#reloading").fadeOut(100);
+			})
+
 			$(function () {
                 $("#dataTables").dataTable();
                 $("#dataTables2").dataTable();

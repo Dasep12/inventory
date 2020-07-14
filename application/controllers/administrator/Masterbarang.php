@@ -75,4 +75,15 @@
  				echo "Gagal";
  			}
  	}
+
+
+ 	//update supplier
+ 	public function updateSupp()
+ 	{
+ 		$id  = $this->input->get("id");
+ 		$where = array('nama_supplier' => $id );
+ 		$supp = $this->m_transaksi->cari("supplier",$where)->row();
+
+ 		echo $supp->kode_supplier ;
+ 	}
  }

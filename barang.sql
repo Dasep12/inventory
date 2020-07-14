@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2020 pada 06.47
+-- Waktu pembuatan: 14 Jul 2020 pada 13.42
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -18,8 +18,30 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sparepart`
+-- Database: `barang`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `akun`
+--
+
+CREATE TABLE `akun` (
+  `id` int(11) NOT NULL,
+  `id_nik` int(11) DEFAULT NULL,
+  `pass` varchar(255) DEFAULT NULL,
+  `role_id` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `akun`
+--
+
+INSERT INTO `akun` (`id`, `id_nik`, `pass`, `role_id`) VALUES
+(3, 3030, '123', 2),
+(4, 2015, '123', 1),
+(5, 2012, '123', 2);
 
 -- --------------------------------------------------------
 
@@ -33,21 +55,17 @@ CREATE TABLE `invoice` (
   `no_transaksi` varchar(100) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `pembayaran` int(20) DEFAULT NULL,
-  `kembali` int(20) DEFAULT NULL
+  `kembali` int(20) DEFAULT NULL,
+  `id_costumer` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `invoice`
 --
 
-INSERT INTO `invoice` (`id`, `id_transaksi`, `no_transaksi`, `tanggal`, `pembayaran`, `kembali`) VALUES
-(20, 'INV-073110', 'INV-073110', '2020-06-22', 200000, 50000),
-(21, 'INV-073749', 'INV-073749', '2020-06-22', 300000, 0),
-(22, 'INV-074129', 'INV-074129', '2020-06-22', 110000, 5000),
-(23, 'INV-081535', 'INV-081535', '2020-06-22', 300000, 0),
-(24, 'INV-023641', 'INV-023641', '2020-06-29', 50000, 15000),
-(25, 'INV-041231', 'INV-041231', '2020-06-29', 600000, 0),
-(26, 'INV-045754', 'INV-045754', '2020-06-29', 300000, 0);
+INSERT INTO `invoice` (`id`, `id_transaksi`, `no_transaksi`, `tanggal`, `pembayaran`, `kembali`, `id_costumer`) VALUES
+(40, 'INV-064613', 'INV-064613', '2020-07-13', 250000, 30000, NULL),
+(41, 'INV-062925', 'INV-062925', '2020-07-14', 500000, 50000, NULL);
 
 -- --------------------------------------------------------
 
@@ -66,26 +84,23 @@ CREATE TABLE `lajur_stock` (
   `tanggal` date DEFAULT NULL,
   `supplier` varchar(255) DEFAULT NULL,
   `kode_supplier` varchar(255) DEFAULT NULL,
-  `nilai` int(20) DEFAULT NULL
+  `nilai` int(20) DEFAULT NULL,
+  `user` varchar(100) DEFAULT NULL,
+  `nik` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `lajur_stock`
 --
 
-INSERT INTO `lajur_stock` (`id`, `no_transaksi`, `nama_barang`, `kode_barang`, `barang_masuk`, `barang_keluar`, `label`, `tanggal`, `supplier`, `kode_supplier`, `nilai`) VALUES
-(15024, 'INV-072134', 'Gearbox', 2089, 5, 0, 'masuk', '2020-06-22', 'Indofood', '34AO', 600000),
-(15025, 'INV-073110', 'Gearbox', 2089, 0, 1, 'keluar', '2020-06-22', 'Dasep', NULL, 150000),
-(15026, 'INV-073749', 'Gearbox', 2089, 0, 2, 'keluar', '2020-06-22', 'Dasep', NULL, 150000),
-(15028, 'INV-074059', 'Ban Dalam', 2090, 25, 0, 'masuk', '2020-06-22', 'PT Autotech Jaya', 'FH11', 850000),
-(15029, 'INV-074129', 'Ban Dalam', 2090, 0, 3, 'keluar', '2020-06-22', 'Eka', NULL, 35000),
-(15030, 'INV-081535', 'Gearbox', 2089, 0, 2, 'keluar', '2020-06-22', 'Dasep', NULL, 150000),
-(15031, 'INV-023641', 'Ban Dalam', 2090, 0, 1, 'keluar', '2020-06-29', 'Dasep', NULL, 35000),
-(15032, 'INV-031704', 'Gearbox', 2089, 25, 0, 'masuk', '2020-06-29', 'Indofood', '34AO', 2250000),
-(15033, 'INV-041201', 'Velg', 1990, 7, 0, 'masuk', '2020-06-29', 'PT Prima Adiwijaya', 'DF80', 1750000),
-(15034, 'INV-041228', 'Helm', 2566, 2, 0, 'masuk', '2020-06-29', 'PT Autotech Jaya', 'FH11', 1200000),
-(15035, 'INV-041231', 'Helm', 2566, 0, 1, 'keluar', '2020-06-29', 'Dasep', NULL, 600000),
-(15036, 'INV-045754', 'Gearbox', 2089, 0, 2, 'keluar', '2020-06-29', 'Eka', NULL, 150000);
+INSERT INTO `lajur_stock` (`id`, `no_transaksi`, `nama_barang`, `kode_barang`, `barang_masuk`, `barang_keluar`, `label`, `tanggal`, `supplier`, `kode_supplier`, `nilai`, `user`, `nik`) VALUES
+(15066, 'INV-064105', 'Gearbox', 2089, 20, 0, 'masuk', '2020-07-13', 'Indofood', '34AO', 2800000, 'Dasep', '2015'),
+(15067, 'INV-064217', 'Ban Dalam', 2090, 20, 0, 'masuk', '2020-07-13', 'PT Autotech Jaya', 'FH11', 640000, 'Dasep', '2015'),
+(15068, 'INV-064240', 'Velg', 1990, 5, 0, 'masuk', '2020-07-13', 'PT Prima Adiwijaya', 'DF80', 1150000, 'Dasep', '2015'),
+(15069, 'INV-064304', 'Helm', 2566, 5, 0, 'masuk', '2020-07-13', 'PT Autotech Jaya', 'FH11', 2500000, 'Dasep', '2015'),
+(15070, 'INV-064613', 'Gearbox', 2089, 0, 1, 'keluar', '2020-07-13', 'Dasep', NULL, 150000, 'Sinta', '3030'),
+(15071, 'INV-064613', 'Ban Dalam', 2090, 0, 2, 'keluar', '2020-07-13', 'Dasep', NULL, 70000, 'Sinta', '3030'),
+(15072, 'INV-062925', 'Gearbox', 2089, 0, 3, 'keluar', '2020-07-14', 'Eka', NULL, 450000, 'Dasep', '2015');
 
 -- --------------------------------------------------------
 
@@ -108,7 +123,8 @@ INSERT INTO `supplier` (`id`, `nama_supplier`, `kode_supplier`) VALUES
 (2, 'PT Prima Wijaya Kusuma', '1A4W'),
 (3, 'Sinar Mentari', '34AO'),
 (6, 'PT Prima Adiwijaya', 'DF80'),
-(7, 'Indofood', 'IND0');
+(7, 'Indofood', 'IND0'),
+(8, 'PT Inticakra', 'PICK');
 
 -- --------------------------------------------------------
 
@@ -132,8 +148,8 @@ CREATE TABLE `tbl_barang` (
 --
 
 INSERT INTO `tbl_barang` (`id`, `kode_barang`, `nama_barang`, `harga_satuan`, `deskripsi`, `kode_supplier`, `satuan`, `nama_supplier`) VALUES
-(1, '2089', 'Gearbox', '150000', '', '34AO', 'PCS', 'Indofood'),
-(2, '2090', 'Ban Dalam', '35000', '', 'FH11', 'PCS', 'PT Autotech Jaya'),
+(1, '2089', 'Gearbox', '150000', 'Barang Baru', 'DF80', 'PCS', 'Indofood'),
+(2, '2090', 'Ban Dalam', '35000', '', '34AO', 'PCS', 'Sinar Mentari'),
 (3, '1990', 'Velg', '250000', '', 'DF80', 'PCS', 'PT Prima Adiwijaya'),
 (4, '2566', 'Helm', '600000', '', 'FH11', 'PCS', 'PT Autotech Jaya');
 
@@ -148,28 +164,54 @@ CREATE TABLE `transaksi` (
   `no_transaksi` varchar(100) DEFAULT NULL,
   `qty` int(9) DEFAULT NULL,
   `nama_pelanggan` varchar(100) DEFAULT NULL,
+  `no_telp` varchar(15) DEFAULT NULL,
   `kode_barang` varchar(100) DEFAULT NULL,
   `harga_satuan` int(12) DEFAULT NULL,
   `harga_bayar` varchar(100) DEFAULT NULL,
-  `nama_barang` varchar(100) DEFAULT NULL
+  `nama_barang` varchar(100) DEFAULT NULL,
+  `user` varchar(100) DEFAULT NULL,
+  `nik` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `no_transaksi`, `qty`, `nama_pelanggan`, `kode_barang`, `harga_satuan`, `harga_bayar`, `nama_barang`) VALUES
-(28, 'INV-073110', 1, 'Dasep', '2089', 150000, '150000', 'Gearbox'),
-(29, 'INV-073749', 2, 'Dasep', '2089', 150000, '300000', 'Gearbox'),
-(30, 'INV-074129', 3, 'Eka', '2090', 35000, '105000', 'Ban Dalam'),
-(31, 'INV-081535', 2, 'Dasep', '2089', 150000, '300000', 'Gearbox'),
-(32, 'INV-023641', 1, 'Dasep', '2090', 35000, '35000', 'Ban Dalam'),
-(33, 'INV-041231', 1, 'Dasep', '2566', 600000, '600000', 'Helm'),
-(34, 'INV-045754', 2, 'Eka', '2089', 150000, '300000', 'Gearbox');
+INSERT INTO `transaksi` (`id`, `no_transaksi`, `qty`, `nama_pelanggan`, `no_telp`, `kode_barang`, `harga_satuan`, `harga_bayar`, `nama_barang`, `user`, `nik`) VALUES
+(51, 'INV-064613', 1, 'Dasep', NULL, '2089', 150000, '150000', 'Gearbox', 'Sinta', '3030'),
+(52, 'INV-064613', 2, 'Dasep', NULL, '2090', 35000, '70000', 'Ban Dalam', 'Sinta', '3030'),
+(53, 'INV-062925', 3, 'Eka', NULL, '2089', 150000, '450000', 'Gearbox', 'Dasep', '2015');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `nik` int(10) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `nik`, `nama`) VALUES
+(7, 3030, 'Sinta'),
+(8, 2015, 'Dasep'),
+(9, 2012, 'EDI WIBOWO');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `akun`
+--
+ALTER TABLE `akun`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `invoice`
@@ -202,26 +244,38 @@ ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `lajur_stock`
 --
 ALTER TABLE `lajur_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15037;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15073;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_barang`
@@ -233,7 +287,13 @@ ALTER TABLE `tbl_barang`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

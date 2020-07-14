@@ -35,9 +35,23 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		<style type="text/css">
+		.reloading {
+			width: 100%;
+			height: 100%;
+			position: fixed; 
+			text-indent: 100%;
+			background: #e0e0e0 url('<?= base_url("assets/images/loading.gif") ?>') no-repeat center ;
+			z-index: 4;
+			opacity: 0.7 ;
+			background-size: 12%;
+		}
+
+		</style>
 	</head>
 
 	<body class="login-layout blur-login">
+		<div class="" id="reloading">Loading . . . </div>
 		<div class="main-container">
 			<div class="main-content">
 				<div class="row">
@@ -105,8 +119,11 @@
 
 											<script type="text/javascript">
 												$(document).ready(function(){
+
 													$("#formlogin").on("submit",function(e){
 														e.preventDefault();
+														$("#reloading").addClass("reloading");
+														$(".reloading").fadeOut(100);
 														if(document.getElementById('nik').value == ""){
 															$("#info").show(250);
 															$("#info2").html("<b><i class='fa fa-info-circle'></i> nik belum diisi</b>");
@@ -122,10 +139,12 @@
 																cache : false ,
 																contentType : false ,
 																beforeSend : function(){
-																	$("#Loading").show();
+																	$("#reloading").addClass("reloading");
+																	$(".reloading").fadeOut(100);
 																},
 																complete: function(){
-																	$("#Loading").hide();
+																	$("#reloading").addClass("reloading");
+																	$(".reloading").fadeOut(100);
 																},
 																success : function(e){
 																	if(e == "0"){
@@ -180,7 +199,7 @@
 				$(target).addClass('visible');//show target
 			 });
 			});
-			
+
 			
 			
 			//you don't need this, just used for changing background

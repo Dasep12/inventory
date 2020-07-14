@@ -78,6 +78,12 @@
 					dangerMode : [true,"Ok"],
 					title : "Pelanggan Kosong"
 				})
+			}else if( parseInt(document.getElementById("stock").value)  < parseInt($("#qtypesan").val())){
+				swal({
+					icon : "error",
+					dangerMode : [true,"Ok"],
+					title : "QTY saldo tidak mencukupi pesanan"
+				})
 			}else if(document.getElementById("namabrg").value == ""){
 				swal({
 					icon : "error",
@@ -95,12 +101,6 @@
 					icon : "error",
 					dangerMode : [true,"Ok"],
 					title : "QTY masih kosong"
-				})
-			}else if(document.getElementById("qtypesan").value   >  saldo  ){
-				swal({
-					icon : "error",
-					dangerMode : [true,"Ok"],
-					title : "QTY saldo tidak mencukupi pesanan"
 				})
 			}else if(document.getElementById("qtypesan").value < 0 ){
 				swal({
